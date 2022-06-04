@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\SocialmediaController;
 //use App\Models\School;
 
 /*
@@ -24,20 +25,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/registeruser',[UserController::class,'registerapiuser']);
 Route::post('/loginapiuser',[UserController::class,'loginapiuser']);
 Route::get('/getschools',[SchoolController::class,'getSchools']);
+Route::post('/makepost',[SocialmediaController::class,'makePost']);
 
-Route::get('/public/images/{filename}', function($filename){
-    //$path = resource_path() . '/images/' . $filename;
-    $path = resource_path() .  $filename;
+// Route::get('/public/images/{filename}', function($filename){
+//     //$path = resource_path() . '/images/' . $filename;
+//     $path = resource_path() .  $filename;
 
-    if(!File::exists($path)) {
-        return response()->json(['message' => 'Image not found.'], 404);
-    }
+//     if(!File::exists($path)) {
+//         return response()->json(['message' => 'Image not found.'], 404);
+//     }
 
-    $file = File::get($path);
-    $type = File::mimeType($path);
+//     $file = File::get($path);
+//     $type = File::mimeType($path);
 
-    $response = Response::make($file, 200);
-    $response->header("Content-Type", $type);
+//     $response = Response::make($file, 200);
+//     $response->header("Content-Type", $type);
 
-    return $response;
-});
+//     return $response;
+// });
