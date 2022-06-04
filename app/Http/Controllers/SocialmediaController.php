@@ -9,6 +9,6 @@ class SocialmediaController extends Controller
 {
     //Function to make sure insert a post in the database
     public function makePost(Request $req) {
-        return ['messages' => 'We received some data'];
+        return ['data' => $req->all()];
     }
 }
