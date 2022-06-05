@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\socialmedia;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,9 @@ class SocialmediaController extends Controller
     //Function to make sure insert a post in the database
     public function makePost(Request $req) {
         $post = new socialmedia;
+        $user = User::find($req->uid);
         $post->aid = $req->uid;
+        $post->uprofile = $user['profile'];
         $post->Description = $req->post;
 
         if ($req->hasFile('file')) {
@@ -27,8 +30,14 @@ class SocialmediaController extends Controller
             'status' => 200,
             'message' => 'Posted Successfully'
         ]);
-        //else {
-        //     return['messages' => 'No image here'];
-        // }
+    }
+
+    //Funtion to fetch posts
+    public function fetchPosts() {
+        $posts = socialmedia::all();
+
+        return response()->json([
+            'posts' => $posts
+        ]);
     }
 }
