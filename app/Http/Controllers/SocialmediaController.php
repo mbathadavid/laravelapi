@@ -35,7 +35,8 @@ class SocialmediaController extends Controller
 
     //Funtion to fetch posts
     public function fetchPosts() {
-        $posts = socialmedia::where('type','main');
+        $posts = socialmedia::where('type','main')
+                            ->get();
 
         return response()->json([
             'posts' => $posts
