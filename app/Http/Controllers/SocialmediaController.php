@@ -13,6 +13,7 @@ class SocialmediaController extends Controller
         $post = new socialmedia;
         $user = User::find($req->uid);
         $post->aid = $req->uid;
+        $post->type = $req->type;
         $post->uprofile = $user['profile'];
         $post->Description = $req->post;
 
@@ -34,7 +35,7 @@ class SocialmediaController extends Controller
 
     //Funtion to fetch posts
     public function fetchPosts() {
-        $posts = socialmedia::all();
+        $posts = socialmedia::where('type','main');
 
         return response()->json([
             'posts' => $posts

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('socialmedia', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('aid');
+            $table->string('uprofile')->nullable();
             $table->integer('parentcomment')->nullable();
             $table->longText('replyreplycomment')->nullable();
             $table->longText('replyreplydes')->nullable();
