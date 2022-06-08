@@ -10,7 +10,6 @@ class SocialmediaController extends Controller
 {
     //Function to make sure insert a post in the database
     public function makePost(Request $req) {
-        return ['data' => $req->all()];
         // $post = new socialmedia;
         // $user = User::find($req->uid);
         // $post->aid = $req->uid;
@@ -19,15 +18,19 @@ class SocialmediaController extends Controller
         // $post->name = $user['fname'].' '.$user['lname'];
         // $post->Description = $req->post;
 
-        // if ($req->hasFile('file')) {
-        //     $file = $req->file('file');
-        //     $extension = $file->getClientOriginalExtension();
-        //     $filename = time().'image'.'.'.$extension;
-        //     $file->move('images/', $filename);
-        // $post->images = $filename;
-        // } 
+        if ($req->hasFile('file')) {
+            $file = $req->file('file');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'image'.'.'.$extension;
+            $file->move('images/', $filename);
 
-        // $post->save();
+            return ['message' => $extension];
+        //$post->images = $filename;
+        } else {
+            return ['message' => 'No image'];
+        }
+
+       // $post->save();
 
         // return response()->json([
         //     'status' => 200,
