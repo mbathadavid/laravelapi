@@ -10,28 +10,29 @@ class SocialmediaController extends Controller
 {
     //Function to make sure insert a post in the database
     public function makePost(Request $req) {
-        $post = new socialmedia;
-        $user = User::find($req->uid);
-        $post->aid = $req->uid;
-        $post->type = $req->type;
-        $post->uprofile = $user['profile'];
-        $post->name = $user['fname'].' '.$user['lname'];
-        $post->Description = $req->post;
+        return ['data' => $req->all()];
+        // $post = new socialmedia;
+        // $user = User::find($req->uid);
+        // $post->aid = $req->uid;
+        // $post->type = $req->type;
+        // $post->uprofile = $user['profile'];
+        // $post->name = $user['fname'].' '.$user['lname'];
+        // $post->Description = $req->post;
 
-        if ($req->hasFile('file')) {
-            $file = $req->file('file');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'image'.'.'.$extension;
-            $file->move('images/', $filename);
-        $post->images = $filename;
-        } 
+        // if ($req->hasFile('file')) {
+        //     $file = $req->file('file');
+        //     $extension = $file->getClientOriginalExtension();
+        //     $filename = time().'image'.'.'.$extension;
+        //     $file->move('images/', $filename);
+        // $post->images = $filename;
+        // } 
 
-        $post->save();
+        // $post->save();
 
-        return response()->json([
-            'status' => 200,
-            'message' => 'Posted Successfully'
-        ]);
+        // return response()->json([
+        //     'status' => 200,
+        //     'message' => 'Posted Successfully'
+        // ]);
     }
 
     //Funtion to fetch posts
