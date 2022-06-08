@@ -24,7 +24,9 @@ class SocialmediaController extends Controller
             $filename = time().'image'.'.'.$extension;
             $file->move('images/', $filename);
 
-            return ['message' => $extension];
+            return ['message' => $extension,
+                    'imagename' => $filename
+                    ];
         //$post->images = $filename;
         } else {
             return ['message' => 'No image'];
