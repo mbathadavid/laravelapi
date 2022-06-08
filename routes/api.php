@@ -26,7 +26,7 @@ Route::post('/registeruser',[UserController::class,'registerapiuser']);
 Route::post('/loginapiuser',[UserController::class,'loginapiuser']);
 Route::get('/getschools',[SchoolController::class,'getSchools']);
 Route::post('/makepost',[SocialmediaController::class,'makePost']);
-Route::get('/fetchposts',[SocialmediaController::class,'fetchPosts']);
+Route::get('/fetchposts/{type}',[SocialmediaController::class,'fetchPosts']);
 
 // Route::get('/public/images/{filename}', function($filename){
 //     //$path = resource_path() . '/images/' . $filename;
