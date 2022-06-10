@@ -10,6 +10,14 @@ class SocialmediaController extends Controller
 {
     //Function to make sure insert a post in the database
     public function makePost(Request $req) {
+        if($req->pcomment) {
+            $ppost = socialmedia::find($req->pcomment);
+            $value = $ppost['repliescount'];
+            $newval = $value + 1;
+            $ppost->repliescount = $newval;
+            $ppost->save();
+        }
+
         $post = new socialmedia;
         $user = User::find($req->uid);
         $post->aid = $req->uid;
