@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('aid');
+            $table->string('uprofile')->nullable();
+            $table->string('name')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
+
+            $table->foreign('aid')->references('id')->on('')->onDelete('cascade');
         });
     }
 

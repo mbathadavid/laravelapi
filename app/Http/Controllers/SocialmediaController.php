@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\socialmedia;
 use App\Models\User;
+use App\Models\notifications;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,14 @@ class SocialmediaController extends Controller
             $newval = $value + 1;
             $ppost->repliescount = $newval;
             $ppost->save();
+        }
+
+        if($req->type === "reply") {
+            $notification = new notifications;
+            $user = User::find($req->uid);
+            $notification->uprofile = $user['profile'];
+            $notification->name = $user['fname'].' '.$user['lname'];
+            $notification->description = $user['fname'].' '.$user['lname'].' replied to your post';
         }
 
         $post = new socialmedia;
