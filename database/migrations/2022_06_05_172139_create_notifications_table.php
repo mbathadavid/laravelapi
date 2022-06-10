@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('uprofile')->nullable();
             $table->string('name')->nullable();
             $table->string('description')->nullable();
+            $table->string('viewed')->default('0');
             $table->timestamps();
 
             $table->foreign('aid')->references('id')->on('users')->onDelete('cascade');

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('aid');
             $table->string('uprofile')->nullable();
+            $table->string('name')->nullable();
+            $table->string('type')->nullable();
             $table->integer('parentcomment')->nullable();
             $table->longText('replyreplycomment')->nullable();
             $table->longText('replyreplydes')->nullable();
@@ -25,7 +27,7 @@ return new class extends Migration
             $table->longText('images')->nullable();
             $table->timestamps();
 
-            $table->foreign('aid')->references('id')->on('')->onDelete('cascade');
+            $table->foreign('aid')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
