@@ -20,13 +20,13 @@ class SocialmediaController extends Controller
             $ppost->save();
         }
 
-        if($req->type == "reply") {
-            $notification = new notifications;
-            $user = User::find($req->uid);
-            $notification->uprofile = $user['profile'];
-            $notification->name = $user['fname'].' '.$user['lname'];
-            $notification->description = $user['fname'].' '.$user['lname'].' replied to your post';
-        }
+        // if($req->type == "reply") {
+        //     $notification = new notifications;
+        //     $user = User::find($req->uid);
+        //     $notification->uprofile = $user['profile'];
+        //     $notification->name = $user['fname'].' '.$user['lname'];
+        //     $notification->description = $user['fname'].' '.$user['lname'].' replied to your post';
+        // }
 
         $post = new socialmedia;
         $user = User::find($req->uid);
