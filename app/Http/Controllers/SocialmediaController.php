@@ -35,7 +35,7 @@ class SocialmediaController extends Controller
         $post->uprofile = $user['profile'];
         $post->name = $user['fname'].' '.$user['lname'];
         $post->Description = $req->post;
-        $post->parentcomment = $req->pcomment;
+        //$post->parentcomment = $req->pcomment;
 
         if ($req->hasFile('file')) {
             $file = $req->file('file');
