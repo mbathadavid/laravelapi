@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('pass');
             $table->timestamp('datejoined')->nullable();
-            $table->string('profile')->nullable();
+            $table->string('profile')->default('prof.jpeg');
             $table->timestamps();
         });
     }
