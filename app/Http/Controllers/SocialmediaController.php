@@ -95,4 +95,14 @@ class SocialmediaController extends Controller
             'notifications' => $notifications
         ]);                                
     }
+
+    //Update Reading
+    public function readNotification($id) {
+        $notification = notifications::find($id);
+        $notification->viewed = 1;
+        
+        return response()->json([
+            'message' => 'Notification Read Successfully'
+        ]);
+    }
 }
