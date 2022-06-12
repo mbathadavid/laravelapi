@@ -87,6 +87,7 @@ class SocialmediaController extends Controller
     //Fecth Notifications
     public function fetchNotifications($uid) {
         $notifications = notifications::where('aid',$uid)
+                                        ->where('viewed',0)
                                         ->orderBy('created_at','desc')
                                         ->get();
 
