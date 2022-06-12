@@ -56,6 +56,20 @@ class SocialmediaController extends Controller
         ]);
     }
 
+    //Fetch Replies
+    public function fetchReplies($pid) {
+        $post = socialmedia::find($pid);
+        $replies = socialmedia::where('parentcomment',$pid)
+                                ->where('type','reply')
+                                ->get();
+
+        return response()->json([
+            'post' => $post,
+            'replies' => $replies
+        ]);                        
+    }
+
+
     //Funtion to fetch posts
     public function fetchPosts($type) {
         $posts = socialmedia::where('type',$type)
