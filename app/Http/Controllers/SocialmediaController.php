@@ -100,7 +100,8 @@ class SocialmediaController extends Controller
     public function readNotification($id) {
         $notification = notifications::find($id);
         $notification->viewed = 1;
-        
+        $notification->save();
+
         return response()->json([
             'message' => 'Notification Read Successfully'
         ]);
