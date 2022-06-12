@@ -61,6 +61,7 @@ class SocialmediaController extends Controller
         $post = socialmedia::find($pid);
         $replies = socialmedia::where('parentcomment',$pid)
                                 ->where('type','reply')
+                                ->orderBy('created_at','desc')
                                 ->get();
 
         return response()->json([
@@ -73,6 +74,7 @@ class SocialmediaController extends Controller
     //Funtion to fetch posts
     public function fetchPosts($type) {
         $posts = socialmedia::where('type',$type)
+                            ->orderBy('created_at','desc')
                             ->get();
 
         return response()->json([
