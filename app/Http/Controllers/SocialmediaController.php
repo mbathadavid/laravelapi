@@ -13,21 +13,21 @@ class SocialmediaController extends Controller
     public function makePost(Request $req) {
         //return ['data' => $req->all()];
 
-        // if($req->pcomment) {
-        //     $ppost = socialmedia::find($req->pcomment);
-        //     $value = $ppost['repliescount'];
-        //     $newval = $value + 1;
-        //     $ppost->repliescount = $newval;
-        //     $ppost->save();
-        // }
+        if($req->pcomment) {
+            $ppost = socialmedia::find($req->pcomment);
+            $value = $ppost['repliescount'];
+            $newval = $value + 1;
+            $ppost->repliescount = $newval;
+            $ppost->save();
+        }
 
-        // if($req->type == "reply") {
-        //     $notification = new notifications;
-        //     $user = User::find($req->uid);
-        //     $notification->uprofile = $user['profile'];
-        //     $notification->name = $user['fname'].' '.$user['lname'];
-        //     $notification->description = $user['fname'].' '.$user['lname'].' replied to your post';
-        // }
+        if($req->type == "reply") {
+            $notification = new notifications;
+            $user = User::find($req->uid);
+            $notification->uprofile = $user['profile'];
+            $notification->name = $user['fname'].' '.$user['lname'];
+            $notification->description = $user['fname'].' '.$user['lname'].' replied to your post';
+        }
 
         $post = new socialmedia;
         $user = User::find($req->uid);
@@ -36,7 +36,7 @@ class SocialmediaController extends Controller
         $post->uprofile = $user['profile'];
         $post->name = $user['fname'].' '.$user['lname'];
         $post->Description = $req->post;
-        //$post->parentcomment = $req->pcomment;
+        $post->parentcomment = $req->pcomment;
 
         if ($req->hasFile('file')) {
             $file = $req->file('file');
