@@ -82,4 +82,15 @@ class SocialmediaController extends Controller
             'posts' => $posts
         ]);
     }
+
+    //Fecth Notifications
+    public function fetchNotifications($uid) {
+        $notifications = notifications::where('aid',$uid)
+                                        ->orderBy('created_at','desc')
+                                        ->get();
+
+        return response()->json([
+            'notifications' => $notifications
+        ]);                                
+    }
 }
