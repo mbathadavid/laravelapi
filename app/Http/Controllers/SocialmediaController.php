@@ -16,7 +16,7 @@ class SocialmediaController extends Controller
         if($req->pcomment) {
             $ppost = socialmedia::find($req->pcomment);
             $value = $ppost['repliescount'];
-            $newval = $value + 1;
+            $newval = ++$value;
             $ppost->repliescount = $newval;
             $ppost->save();
         }
