@@ -27,6 +27,7 @@ class SocialmediaController extends Controller
             $notification->uprofile = $user['profile'];
             $notification->name = $user['fname'].' '.$user['lname'];
             $notification->description = $user['fname'].' '.$user['lname'].' replied to your post';
+            $notification->save();
         }
 
         $post = new socialmedia;
