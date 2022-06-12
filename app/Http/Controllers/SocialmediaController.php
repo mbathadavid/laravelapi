@@ -24,6 +24,7 @@ class SocialmediaController extends Controller
         if($req->type == "reply") {
             $notification = new notifications;
             $user = User::find($req->uid);
+            $notification->aid = $req->uid;
             $notification->uprofile = $user['profile'];
             $notification->name = $user['fname'].' '.$user['lname'];
             $notification->description = $user['fname'].' '.$user['lname'].' replied to your post';
